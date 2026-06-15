@@ -1,0 +1,1 @@
+/Users/kimsoler/Documents/Web Dev/local sites/ciber-shop/app/public/wp-content/plugins/query-monitor/wp-content/db.php

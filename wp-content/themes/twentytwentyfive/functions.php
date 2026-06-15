@@ -32,7 +32,15 @@ if ( ! function_exists( 'twentytwentyfive_post_format_setup' ) ) :
 	add_action('init', 'registrar_els_meus_menus');
 
 	//Crear el nostre primer shortcut
+
+	// Permet usar [any_actual] en continguts
 	function shortcode_any_actual()
+	{
+		return date('Y-m-d');
+	}
+	add_shortcode('any_actual', 'shortcode_any_actual');
+
+	function shortcode_acudit()
 	{
 		//return date("Y-m-d");
 		return '<div class="contenedor-chistes">
@@ -97,7 +105,19 @@ if ( ! function_exists( 'twentytwentyfive_post_format_setup' ) ) :
 			</style>
 		';
 	}
-	add_shortcode("any_actual", "shortcode_any_actual");
+	add_shortcode("acudit", "shortcode_acudit");
+
+	function afegir_missatge_admin(){
+		echo "Hola admin";
+	}
+	add_action("admin_notices", "afegir_missatge_admin");
+
+	
+	// Exemple de filter: limitar la longitud del contingut del post
+	function modificar_longitud_extracte($longitud){
+		return (!isset($longitud)) ? 25 : $longitud;
+	}
+	add_filter("excerpt_length","modificar_longitud_extracte");	
 endif;
 add_action( 'after_setup_theme', 'twentytwentyfive_post_format_setup' );
 
